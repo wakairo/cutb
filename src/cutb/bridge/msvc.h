@@ -1,5 +1,5 @@
-#ifndef CUTB_CONFIG_VISUALSTUDIO_H
-#define CUTB_CONFIG_VISUALSTUDIO_H
+#ifndef CUTB_BRIDGE_MSVC_H
+#define CUTB_BRIDGE_MSVC_H
 
 #include "CppUnitTest.h"
 

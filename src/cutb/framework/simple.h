@@ -1,5 +1,5 @@
-#ifndef CUTB_CONFIG_SIMPLE_H
-#define CUTB_CONFIG_SIMPLE_H
+#ifndef CUTB_FRAMEWORK_SIMPLE_H
+#define CUTB_FRAMEWORK_SIMPLE_H
 
 #include "cutb/frameworkbase.h"
 

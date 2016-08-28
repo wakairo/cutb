@@ -1,5 +1,5 @@
-#ifndef CUTB_CONFIG_ASSERT_EXIT_H
-#define CUTB_CONFIG_ASSERT_EXIT_H
+#ifndef CUTB_ASSERT_EXIT_H
+#define CUTB_ASSERT_EXIT_H
 
 extern void cutb_assert_fail(int condition, const char * condstr,
                              const char *filename, int lineno);

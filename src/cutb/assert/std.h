@@ -1,5 +1,5 @@
-#ifndef CUTB_CONFIG_ASSERTSTD_H
-#define CUTB_CONFIG_ASSERTSTD_H
+#ifndef CUTB_ASSERT_STD_H
+#define CUTB_ASSERT_STD_H
 
 #include <assert.h>
 #include <math.h>

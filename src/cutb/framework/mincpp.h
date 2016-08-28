@@ -1,5 +1,5 @@
-#ifndef CUTB_CONFIG_MINCPP_H
-#define CUTB_CONFIG_MINCPP_H
+#ifndef CUTB_FRAMEWORK_MINCPP_H
+#define CUTB_FRAMEWORK_MINCPP_H
 
 #define CUTB_TEST_GROUP(test_group_name) namespace test_group_name {
 #define CUTB_TEST_GROUP_END }

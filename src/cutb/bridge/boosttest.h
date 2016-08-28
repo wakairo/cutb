@@ -1,5 +1,5 @@
-#ifndef CUTB_CONFIG_BOOSTTEST_H
-#define CUTB_CONFIG_BOOSTTEST_H
+#ifndef CUTB_BRIDGE_BOOSTTEST_H
+#define CUTB_BRIDGE_BOOSTTEST_H
 
 #include <math.h>
 #include <boost/test/unit_test.hpp>
