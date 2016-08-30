@@ -6,7 +6,7 @@ extern void cutb_assert_fail(int condition, const char * condstr,
 extern void cutb_assert_eq_long_impl(long expected, long actual, const char * expectedstr, const char * actualstr, const char *filename, int lineno);
 extern void cutb_assert_eq_ulong_impl(unsigned long expected, unsigned long actual, const char * expectedstr, const char * actualstr, const char *filename, int lineno);
 extern void cutb_assert_eq_dbl_impl(double expected, double actual, double tolerance,
-                             const char * expectedstr, const char * actualstr, const char * tolerancestr,
+                                    const char * expectedstr, const char * actualstr, const char * tolerancestr,
                                     const char *filename, int lineno);
 
 #define CUTB_ASSERT(condition) \

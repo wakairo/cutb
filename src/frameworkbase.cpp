@@ -7,32 +7,33 @@ TestManager * TestManager::last__ = NULL;
 TestManager * TestManager::current__ = NULL;
 
 void TestManager::addBack(TestManager * mgr)
- {
-            if (NULL == first__) {
-                first__ = mgr;
-                last__ = mgr;
-                current__ = mgr;
-            }
-            else {
-                last__->next_ = mgr;
-                last__ = mgr;
-            }
+{
+    if (NULL == first__) {
+        first__ = mgr;
+        last__ = mgr;
+        current__ = mgr;
+    } else {
+        last__->next_ = mgr;
+        last__ = mgr;
+    }
 }
 
-bool TestManager::seekTest(size_t n) {
-            TestManager * mgr = first__;
-            for (size_t i = 0; i < n && NULL != mgr; ++i) {
-                mgr = mgr->next_;
-            }
-            if (NULL == mgr) {
-                return false;
-            }
-            current__ = mgr;
+bool TestManager::seekTest(size_t n)
+{
+    TestManager * mgr = first__;
+    for (size_t i = 0; i < n && NULL != mgr; ++i) {
+        mgr = mgr->next_;
+    }
+    if (NULL == mgr) {
+        return false;
+    }
+    current__ = mgr;
 
-            return true;
+    return true;
 }
 
-bool TestManager::advanceTest() {
+bool TestManager::advanceTest()
+{
     if (NULL == current__) {
         return false;
     }
@@ -44,7 +45,8 @@ bool TestManager::advanceTest() {
     return true;
 }
 
-void TestManager::runTest() {
+void TestManager::runTest()
+{
     if (NULL == current__) {
         return;
     }

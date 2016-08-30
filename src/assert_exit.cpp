@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 void cutb_assert_fail(int condition, const char * condstr,
-                             const char *filename, int lineno)
+                      const char *filename, int lineno)
 {
     fprintf(stderr, "\n%s:%d: CUTB_ASSERT(%s) failed.\n",
             filename, lineno, condstr);
