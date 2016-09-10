@@ -2,11 +2,13 @@
 
 CUTB_TEST_GROUP(Group1)
 
+/** Simple assertion */
 CUTB_TEST(Test1)
 {
     CUTB_ASSERT(true);
 }
 
+/** Assertions comparing two variables */
 CUTB_TEST(Test2)
 {
     CUTB_ASSERT_EQ_LONG(-1, -1);
