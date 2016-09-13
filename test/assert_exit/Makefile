@@ -1,4 +1,4 @@
-CC = g++
+CXX = g++
 CPPFLAGS = -Wall -MMD -O0 -fprofile-arcs -ftest-coverage -I . -I ../../src
 LDFLAGS = -fprofile-arcs
 
@@ -14,7 +14,7 @@ DEPENDS=$(OBJS:%.o=%.d)
 all: test
 
 $(BIN): $(OBJS)
-	$(CC) -o $@ $(LDFLAGS) $^ $(LDLIBS)
+	$(CXX) -o $@ $(LDFLAGS) $^ $(LDLIBS)
 
 test: all_test_runner.sh $(BIN)
 	sh $<

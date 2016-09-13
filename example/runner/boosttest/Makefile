@@ -1,4 +1,4 @@
-CC = g++
+CXX = g++
 CPPFLAGS = -Wall -MMD -O0 -fprofile-arcs -ftest-coverage -I . -I ../../../src
 LDFLAGS = -fprofile-arcs
 LDLIBS = -lboost_unit_test_framework # -lboost_unit_test_framework-mt
@@ -15,7 +15,7 @@ DEPENDS=$(OBJS:%.o=%.d)
 all: test
 
 $(BIN): $(OBJS)
-	$(CC) -o $@ $(LDFLAGS) $^ $(LDLIBS)
+	$(CXX) -o $@ $(LDFLAGS) $^ $(LDLIBS)
 
 test: $(BIN)
 	./$<
