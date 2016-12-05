@@ -52,3 +52,27 @@ void TestManager::runTest()
     }
     current__->testInst().testBody();
 }
+
+const char* TestManager::currentTestname()
+{
+    if (NULL == current__) {
+        return "";
+    }
+    return current__->testname_;
+}
+
+const char* TestManager::currentFilepath()
+{
+    if (NULL == current__) {
+        return "";
+    }
+    return current__->filepath_;
+}
+
+int TestManager::currentLineno()
+{
+    if (NULL == current__) {
+        return 0;
+    }
+    return current__->lineno_;
+}

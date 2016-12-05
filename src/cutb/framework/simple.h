@@ -8,7 +8,7 @@
 
 #define CUTB_TEST(test_name) \
     struct test_name : public ::cutb::TestBase{ virtual void testBody(); } test_name##Inst; \
-::cutb::TestManager test_name##Manager(test_name##Inst);  \
-void test_name::testBody()
+    ::cutb::TestManager test_name##Manager(test_name##Inst, #test_name, __FILE__, __LINE__); \
+    void test_name::testBody()
 
 #endif

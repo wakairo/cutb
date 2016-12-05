@@ -47,7 +47,11 @@ int main(int argc, char *argv[])
     } else {
         size_t i = test_start;
         do {
-            printf("%lu.. ", i);
+            printf("%s:%d: %s, %lu .. ",
+                   TestManager::currentFilepath(),
+                   TestManager::currentLineno(),
+                   TestManager::currentTestname(),
+                   i);
             fflush(stdout);
             TestManager::runTest();
             printf("done\n");
