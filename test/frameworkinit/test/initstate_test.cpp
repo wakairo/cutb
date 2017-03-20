@@ -29,7 +29,8 @@ CUTB_TEST(GradualTestAddition)
     CUTB_ASSERT(!TestManager::seekTest(0));
     CUTB_ASSERT_EQ_LONG(-1, MockTest::lastID());
 
-    TestManager mgr1(mock1), mgr2(mock2);
+    TestManager mgr1(mock1, "mock1", __FILE__, __LINE__);
+    TestManager mgr2(mock2, "mock2", __FILE__, __LINE__);
 
     TestManager::runTest();
     CUTB_ASSERT_EQ_LONG(1, MockTest::lastID());
@@ -50,7 +51,7 @@ CUTB_TEST(GradualTestAddition)
 
     CUTB_ASSERT(!TestManager::seekTest(2));
 
-    TestManager mgr3(mock3);
+    TestManager mgr3(mock3, "mock3", __FILE__, __LINE__);
 
     CUTB_ASSERT(!TestManager::seekTest(99));
     CUTB_ASSERT(!TestManager::seekTest(3));
