@@ -1,0 +1,19 @@
+language: cpp
+compiler:
+  - clang
+  - gcc
+env:
+  matrix:
+    - CXXFLAGS=-std=c++03
+    - CXXFLAGS=-std=c++11
+addons:
+  apt:
+    packages:
+    - libboost-test-dev
+script:
+  - make -C test/assert_exit test
+  - make -C test/framework test
+  - make -C test/frameworkinit test
+  - make -C example/runner/boosttest test
+  - make -C example/runner/mincpp test
+  - make -C example/runner/simple test
