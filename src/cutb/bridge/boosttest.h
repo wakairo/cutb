@@ -9,11 +9,12 @@
 #define CUTB_TEST(test_name) BOOST_AUTO_TEST_CASE(test_name)
 
 #define CUTB_ASSERT(condition) BOOST_REQUIRE(condition);
-#define CUTB_ASSERT_EQ_LONG(expected, actual) \
+#define CUTB_ASSERT_EQ_LONG(expected, actual)                                  \
     BOOST_REQUIRE_EQUAL(static_cast<long>(expected), static_cast<long>(actual));
-#define CUTB_ASSERT_EQ_ULONG(expected, actual) \
-    BOOST_REQUIRE_EQUAL(static_cast<unsigned long>(expected), static_cast<unsigned long>(actual));
-#define CUTB_ASSERT_EQ_DBL(expected, actual, tolerance) \
+#define CUTB_ASSERT_EQ_ULONG(expected, actual)                                 \
+    BOOST_REQUIRE_EQUAL(static_cast<unsigned long>(expected),                  \
+                        static_cast<unsigned long>(actual));
+#define CUTB_ASSERT_EQ_DBL(expected, actual, tolerance)                        \
     BOOST_REQUIRE(fabs(expected - actual) <= tolerance);
 
 #endif

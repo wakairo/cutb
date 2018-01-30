@@ -7,21 +7,18 @@ namespace {
 class MockTest : public cutb::TestBase {
 private:
     static int last_id__;
+
 public:
-    static int lastID() {
-        return last_id__;
-    }
+    static int lastID() { return last_id__; }
 private:
     int id_;
+
 public:
     MockTest(int id) : id_(id) {}
-    virtual void testBody() {
-        last_id__ = id_;
-    }
+    virtual void testBody() { last_id__ = id_; }
 } mock1(1), mock2(2), mock3(3);
 int MockTest::last_id__ = -1;
 }
-
 
 CUTB_TEST_GROUP(InitialStateTest)
 

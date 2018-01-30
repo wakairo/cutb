@@ -4,7 +4,7 @@ CUTB_TEST_GROUP(AssertionTestFailure)
 
 CUTB_TEST(ASSERT_TEST)
 {
-    void * ptr = NULL;
+    void *ptr = NULL;
 
     CUTB_ASSERT(NULL != ptr);
 }
@@ -42,12 +42,11 @@ CUTB_TEST(DOUBLE_TEST_NG3)
 
 CUTB_TEST_GROUP_END;
 
-
 CUTB_TEST_GROUP(AssertionTestSuccess)
 
 CUTB_TEST(ASSERT_TEST)
 {
-    void * ptr = NULL;
+    void *ptr = NULL;
 
     CUTB_ASSERT(NULL == ptr);
 }

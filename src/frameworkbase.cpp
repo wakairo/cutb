@@ -2,11 +2,11 @@
 
 using cutb::TestManager;
 
-TestManager * TestManager::first__ = NULL;
-TestManager * TestManager::last__ = NULL;
-TestManager * TestManager::current__ = NULL;
+TestManager *TestManager::first__ = NULL;
+TestManager *TestManager::last__ = NULL;
+TestManager *TestManager::current__ = NULL;
 
-void TestManager::addBack(TestManager * mgr)
+void TestManager::addBack(TestManager *mgr)
 {
     if (NULL == first__) {
         first__ = mgr;
@@ -20,7 +20,7 @@ void TestManager::addBack(TestManager * mgr)
 
 bool TestManager::seekTest(size_t n)
 {
-    TestManager * mgr = first__;
+    TestManager *mgr = first__;
     for (size_t i = 0; i < n && NULL != mgr; ++i) {
         mgr = mgr->next_;
     }
@@ -53,7 +53,7 @@ void TestManager::runTest()
     current__->testInst().testBody();
 }
 
-const char* TestManager::currentTestname()
+const char *TestManager::currentTestname()
 {
     if (NULL == current__) {
         return "";
@@ -61,7 +61,7 @@ const char* TestManager::currentTestname()
     return current__->testname_;
 }
 
-const char* TestManager::currentFilepath()
+const char *TestManager::currentFilepath()
 {
     if (NULL == current__) {
         return "";

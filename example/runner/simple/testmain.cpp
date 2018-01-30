@@ -7,7 +7,7 @@
 
 using cutb::TestManager;
 
-static bool str_to_ulong(const char * str, unsigned long * num)
+static bool str_to_ulong(const char *str, unsigned long *num)
 {
     unsigned long n;
     char *endp;
@@ -28,7 +28,8 @@ int main(int argc, char *argv[])
     if (2 <= argc) {
         unsigned long n;
         if (!str_to_ulong(argv[1], &n)) {
-            fprintf(stderr, "Error: Not a valid number string, '%s'\n", argv[1]);
+            fprintf(stderr, "Error: Not a valid number string, '%s'\n",
+                    argv[1]);
             exit(EXIT_FAILURE);
         } else {
             const size_t size_t_max = ((size_t)0) - 1;
@@ -47,10 +48,8 @@ int main(int argc, char *argv[])
     } else {
         size_t i = test_start;
         do {
-            printf("%s:%d: %s, %lu .. ",
-                   TestManager::currentFilepath(),
-                   TestManager::currentLineno(),
-                   TestManager::currentTestname(),
+            printf("%s:%d: %s, %lu .. ", TestManager::currentFilepath(),
+                   TestManager::currentLineno(), TestManager::currentTestname(),
                    i);
             fflush(stdout);
             TestManager::runTest();

@@ -7,7 +7,7 @@ CUTB_TEST_GROUP(Group2)
 /** NULL check */
 CUTB_TEST(Test1)
 {
-    void * ptr = NULL;
+    void *ptr = NULL;
 
     CUTB_ASSERT(NULL == ptr);
 }
