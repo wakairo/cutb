@@ -1,0 +1,2 @@
+
+test/fail_assertion_test.cpp:16: CUTB_ASSERT_EQ_ULONG(0 * 1, lval) failed. [0 != 1]

@@ -5,4 +5,4 @@ BreakBeforeBraces: Custom
 BraceWrapping:
     AfterFunction: true
 AllowShortFunctionsOnASingleLine: Inline
-SortIncludes: false
+SortIncludes: true

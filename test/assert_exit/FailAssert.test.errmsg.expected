@@ -1,0 +1,2 @@
+
+test/fail_assertion_test.cpp:9: CUTB_ASSERT(NULL != ptr) failed.

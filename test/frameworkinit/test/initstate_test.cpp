@@ -1,23 +1,25 @@
 #include "cutb_config.h"
-#include "cutb/frameworkbase.h"
+
+#include "cutb/framework/simple/core.h"
 
 using cutb::TestManager;
 
 namespace {
 class MockTest : public cutb::TestBase {
 private:
-    static int last_id__;
+    static int s_last_id_;
 
 public:
-    static int lastID() { return last_id__; }
+    static int lastID() { return s_last_id_; }
+
 private:
     int id_;
 
 public:
     MockTest(int id) : id_(id) {}
-    virtual void testBody() { last_id__ = id_; }
+    virtual void testBody() { s_last_id_ = id_; }
 } mock1(1), mock2(2), mock3(3);
-int MockTest::last_id__ = -1;
+int MockTest::s_last_id_ = -1;
 }
 
 CUTB_TEST_GROUP(InitialStateTest)

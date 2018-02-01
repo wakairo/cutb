@@ -1,57 +1,15 @@
 #include "cutb_config.h"
 
-CUTB_TEST_GROUP(AssertionTestFailure)
+CUTB_TEST_GROUP(AssertionTest)
 
-CUTB_TEST(ASSERT_TEST)
-{
-    void *ptr = NULL;
-
-    CUTB_ASSERT(NULL != ptr);
-}
-
-CUTB_TEST(ULONG_TEST)
-{
-    unsigned long lval = 1;
-
-    CUTB_ASSERT_EQ_ULONG(0 * 1, lval);
-}
-
-CUTB_TEST(LONG_TEST)
-{
-    long lval = -1;
-
-    CUTB_ASSERT_EQ_LONG(2 * 3, lval);
-}
-
-CUTB_TEST(DOUBLE_TEST_NG1)
-{
-    CUTB_ASSERT_EQ_DBL(1 * 1.0, 1.02, 0.01);
-}
-
-CUTB_TEST(DOUBLE_TEST_NG2)
-{
-    CUTB_ASSERT_EQ_DBL(1 * 1000.0, 1002.0, 1.0);
-}
-
-CUTB_TEST(DOUBLE_TEST_NG3)
-{
-    double dval = -1.0;
-
-    CUTB_ASSERT_EQ_DBL(1.0, dval, 0.01);
-}
-
-CUTB_TEST_GROUP_END;
-
-CUTB_TEST_GROUP(AssertionTestSuccess)
-
-CUTB_TEST(ASSERT_TEST)
+CUTB_TEST(Assert)
 {
     void *ptr = NULL;
 
     CUTB_ASSERT(NULL == ptr);
 }
 
-CUTB_TEST(ULONG_TEST)
+CUTB_TEST(EqUlong)
 {
     unsigned long lval = 1;
     unsigned int ival = 2;
@@ -65,7 +23,7 @@ CUTB_TEST(ULONG_TEST)
     CUTB_ASSERT_EQ_ULONG(4, cval);
 }
 
-CUTB_TEST(LONG_TEST)
+CUTB_TEST(EqLong)
 {
     long lval = -1;
     int ival = -2;
@@ -79,7 +37,7 @@ CUTB_TEST(LONG_TEST)
     CUTB_ASSERT_EQ_LONG(-4, cval);
 }
 
-CUTB_TEST(DOUBLE_TEST)
+CUTB_TEST(EqDbl)
 {
     float fval = -1.0F;
     double dval = 1.0;

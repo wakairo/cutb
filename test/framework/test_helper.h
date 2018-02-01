@@ -2,7 +2,8 @@
 #define TEST_HELPER_H
 
 #include "cutb_config.h"
-#include "cutb/frameworkbase.h"
+
+#include "cutb/framework/simple/core.h"
 
 extern void setup(void);
 extern size_t get_count(void);
@@ -10,17 +11,18 @@ extern size_t get_count(void);
 namespace test_helper {
 class MockTest : public cutb::TestBase {
 private:
-    static int last_id__;
+    static int s_last_id_;
 
 public:
-    static int lastID() { return last_id__; }
-    static void setLastID(int id) { last_id__ = id; }
+    static int lastID() { return s_last_id_; }
+    static void setLastID(int id) { s_last_id_ = id; }
+
 private:
     int id_;
 
 public:
     MockTest(int id) : id_(id) {}
-    virtual void testBody() { last_id__ = id_; }
+    virtual void testBody() { s_last_id_ = id_; }
 };
 }
 

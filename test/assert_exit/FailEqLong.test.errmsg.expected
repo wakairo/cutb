@@ -1,0 +1,2 @@
+
+test/fail_assertion_test.cpp:23: CUTB_ASSERT_EQ_LONG(2 * 3, lval) failed. [6 != -1]

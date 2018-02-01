@@ -3,11 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "cutb_config.h"
+#include "cutb/framework/simple/core.h"
 
 using cutb::TestManager;
 
-static bool str_to_ulong(const char *str, unsigned long *num)
+static int str_to_ulong(const char *str, unsigned long *num)
 {
     unsigned long n;
     char *endp;
@@ -15,10 +15,11 @@ static bool str_to_ulong(const char *str, unsigned long *num)
     errno = 0;
     n = strtoul(str, &endp, 0);
     if (str == endp || ERANGE == errno) {
-        return false;
+        return 0;
     }
     *num = n;
-    return true;
+
+    return 1;
 }
 
 int main(int argc, char *argv[])
@@ -27,14 +28,14 @@ int main(int argc, char *argv[])
 
     if (2 <= argc) {
         unsigned long n;
-        if (!str_to_ulong(argv[1], &n)) {
-            fprintf(stderr, "Error: Not a valid number string, '%s'\n",
+        if (0 == str_to_ulong(argv[1], &n)) {
+            fprintf(stderr, "error: not a valid number string, '%s'\n",
                     argv[1]);
             exit(EXIT_FAILURE);
         } else {
             const size_t size_t_max = ((size_t)0) - 1;
             if (size_t_max < n) {
-                fprintf(stderr, "Error: Too large,  %lu\n", n);
+                fprintf(stderr, "error: too large,  %lu\n", n);
                 exit(EXIT_FAILURE);
             } else {
                 test_start = (size_t)n;
@@ -43,7 +44,8 @@ int main(int argc, char *argv[])
     }
 
     if (!TestManager::seekTest(test_start)) {
-        fprintf(stderr, "Error: Out of test number range,  %lu\n", test_start);
+        fprintf(stderr, "error: out of the test index range,  %lu\n",
+                test_start);
         exit(EXIT_FAILURE);
     } else {
         size_t i = test_start;

@@ -1,25 +1,26 @@
+cutb_test_path = test
+
 CXX = g++
-CPPFLAGS = -Wall -MMD -O0 -fprofile-arcs -ftest-coverage -I . -I ../../src
+CPPFLAGS = -Wall -MMD -O0 -fprofile-arcs -ftest-coverage -I . -I ../../include
 LDFLAGS = -fprofile-arcs
+VPATH = ../../src $(cutb_test_path)
 
-VPATH = test/ ../../src/
-
-BIN = all_test
-TEST_OBJS = $(patsubst %.cpp, %.o, $(notdir $(wildcard test/*_test.cpp)))
-OBJS = frameworkbase.o test_helper.o testmain.o $(TEST_OBJS)
-DEPENDS=$(OBJS:%.o=%.d)
+test_target = testrunner
+test_objects = $(patsubst %.cpp, %.o, $(notdir $(wildcard $(cutb_test_path)/*_test.cpp)))
+objects = cutb_framework_simple_core.o test_helper.o testmain.o $(test_objects)
+depends = $(objects:.o=.d)
 
 .PHONY: all test clean
 
-all: test
+all: $(test_target)
 
-$(BIN): $(OBJS)
-	$(CXX) -o $@ $(LDFLAGS) $^ $(LDLIBS)
+$(test_target): $(objects)
+	$(CXX) $(LDFLAGS) $(TARGET_ARCH) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
-test: $(BIN)
+test: $(test_target)
 	./$<
 
 clean:
-	rm -f $(DEPENDS) $(OBJS) $(BIN) $(OBJS:%.o=%.gcda) $(OBJS:%.o=%.gcno) *.gcov
+	rm -f $(test_target) $(objects) $(depends) $(objects:.o=.gcda) $(objects:.o=.gcno) *.gcov
 
--include $(DEPENDS)
+-include $(depends)

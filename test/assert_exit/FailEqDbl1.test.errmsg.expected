@@ -1,0 +1,2 @@
+
+test/fail_assertion_test.cpp:28: CUTB_ASSERT_EQ_DBL(1 * 1.0, 1.02, 0.01) failed. [fabs(1.000000 - 1.020000) > 0.010000]

@@ -1,9 +1,10 @@
-#include <stdio.h>
+#include <iostream>
 
 #include "test_helper.h"
 
 int main()
 {
-    printf("%lu tests; no errors detected.\n", get_count());
+    std::cout << get_count() << " tests; no errors detected." << std::endl;
+
     return 0;
 }

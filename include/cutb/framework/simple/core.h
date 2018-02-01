@@ -1,7 +1,7 @@
-#ifndef CUTB_FRAMEWORKBASE_H
-#define CUTB_FRAMEWORKBASE_H
+#ifndef CUTB_FRAMEWORK_SIMPLE_CORE_H
+#define CUTB_FRAMEWORK_SIMPLE_CORE_H
 
-#include <stddef.h>
+#include <cstddef>
 
 namespace cutb {
 class TestBase {
@@ -28,13 +28,13 @@ public:
     }
 
 private:
-    static TestManager *first__;
-    static TestManager *last__;
-    static TestManager *current__;
+    static TestManager *s_first_;
+    static TestManager *s_last_;
+    static TestManager *s_current_;
     static void addBack(TestManager *inst);
 
 public:
-    static bool seekTest(size_t n);
+    static bool seekTest(size_t idx);
     static bool advanceTest();
     static void runTest();
     static const char *currentTestname();

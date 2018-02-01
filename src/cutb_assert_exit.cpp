@@ -1,7 +1,3 @@
-#ifndef CUTB_CONFIG_ASSERT_EXIT_H
-#define CUTB_CONFIG_ASSERT_EXIT_H
-
-#include <assert.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -51,5 +47,3 @@ void cutb_assert_eq_dbl_impl(double expected, double actual, double tolerance,
         exit(EXIT_FAILURE);
     }
 }
-
-#endif
