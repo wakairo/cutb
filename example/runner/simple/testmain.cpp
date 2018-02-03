@@ -7,6 +7,26 @@
 
 using cutb::TestManager;
 
+/** @file
+ * Example test runner using CUTB simple test framework
+ *
+ * usage: ./testrunner [start-test-index]
+ *
+ * This program executes the test corresponding to start-test-index and
+ * the following tests. start-test-index must be a string that can be converted
+ * to an unsigned integer number less than the number of tests.
+ * When start-test-index is not given, all tests are executed stating from
+ * the test corresponding to zero.
+ */
+
+/**
+ * Converts @p str to an unsigned long integer.
+ *
+ * @param str the string to be converted
+ * @param num the number converted from the string
+ * @retval "non-zero value" the conversion succeeded.
+ * @retval 0 the conversion failed.
+ */
 static int str_to_ulong(const char *str, unsigned long *num)
 {
     unsigned long n;
