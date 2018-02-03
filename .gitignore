@@ -36,3 +36,6 @@ testrunner
 *.gcno
 *.gcda
 *.gcov
+
+# Doxygen document
+/doxygen_docs

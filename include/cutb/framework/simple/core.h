@@ -3,6 +3,10 @@
 
 #include <cstddef>
 
+/** @file
+ * Classes for CUTB simple framework.
+ */
+
 namespace cutb {
 class TestBase {
 public:
@@ -10,6 +14,9 @@ public:
     virtual void testBody() = 0;
 };
 
+/**
+ * API class used in CUTB simple framework.
+ */
 class TestManager {
 private:
     TestManager *next_;
@@ -34,11 +41,38 @@ private:
     static void addBack(TestManager *inst);
 
 public:
+    /**
+     * Makes the current test move to the test corresponding to the @p idx.
+     * If @p idx is out of the test index range, the seeking fails and false is
+     * returned.
+     *
+     * @param idx index of the test to seek to
+     * @returns whether the seeking succeeded or not
+     */
     static bool seekTest(size_t idx);
+    /**
+     * Makes the current test move to the next test.
+     * When the current test is the last test, the advancement fails and false
+     * is returned.
+     *
+     * @returns whether the advancement succeeded or not.
+     */
     static bool advanceTest();
+    /**
+     * Runs the current test.
+     */
     static void runTest();
+    /**
+     * @returns the test name of the current test.
+     */
     static const char *currentTestname();
+    /**
+     * @returns the file path of the current test.
+     */
     static const char *currentFilepath();
+    /**
+     * @returns the line number of the current test.
+     */
     static int currentLineno();
 };
 }
