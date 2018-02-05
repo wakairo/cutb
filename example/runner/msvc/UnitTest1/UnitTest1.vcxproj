@@ -153,8 +153,8 @@
     <ClInclude Include="..\cutb_config.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\test\ex1_test.cpp" />
-    <ClCompile Include="..\..\..\test\ex2_test.cpp" />
+    <ClCompile Include="..\..\..\test\basicassert_test.cpp" />
+    <ClCompile Include="..\..\..\test\nullcheck_test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
