@@ -1,0 +1,17 @@
+#include "cutb_config.h"
+
+CUTB_TEST_GROUP(Gb)
+
+CUTB_TEST_GROUP_END;
+
+CUTB_TEST_GROUP(Gc)
+
+CUTB_TEST(Ta)
+{
+}
+
+CUTB_TEST(Tb)
+{
+}
+
+CUTB_TEST_GROUP_END;

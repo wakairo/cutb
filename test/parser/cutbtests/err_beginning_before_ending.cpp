@@ -1,0 +1,9 @@
+#include "cutb_config.h"
+
+CUTB_TEST_GROUP(Ga)
+
+CUTB_TEST_GROUP(Gb)
+
+CUTB_TEST_GROUP_END;
+
+CUTB_TEST_GROUP_END;

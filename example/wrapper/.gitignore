@@ -1,0 +1,5 @@
+# Wrapped CUTB test files
+*.wrappedtest
+
+# Wrapper output files
+/cutb_wrapper_chelper.c

@@ -33,10 +33,15 @@ CUTBは、特定のテストフレームワークに依存していません。�
 
 ## テストを実行できる環境
 
-### テストを実行できるテストフレームワーク
+### テストを直接実行できるテストフレームワーク
 
 - Boost Test Library
 - Microsoft Unit Testing Framework
+
+### Wrapperを利用することでテストが実行できるテストフレームワーク
+
+- Google Test
+- Cpputest
 
 ### CUTBが提供する簡易テストフレームワーク
 
@@ -177,6 +182,62 @@ Microsoft Unit Testing Frameworkを利用するときは、`cutb/bridge/msvc.h`�
 テスト1つの実行またはデバッグをするには、テストエクスプローラーウインドウで目的のテスト右クリックして下さい。
 
 
+### Parserの利用
+
+CUTBのパーサーを利用すると、テストファイルにあるテストグループやその中にあるテストに関する情報を処理するプログラムを作ることができます。
+
+パーサーを利用するときは、`cutb/parser/cutb_parse_config.h`をインクルードしたCUTB設定用ヘッダ（cutb_config.h）を使用します。
+また、`src/cutb_parser_core.cpp`をコンパイルしてリンクする必要があります。
+
+利用できるAPIは、[Doxygenドキュメント](https://wakairo.github.io/cutb-doxydocs/classcutb_1_1_parser.html)をご覧下さい。
+
+以下のラッパーが、パーサーの利用例になっていますので、利用例はラッパーをご覧下さい。
+
+### Wrapperの利用
+
+CUTBのパーサーを利用して、テストをラップします。ラップしたテストはGoogle Testなどで実行できます。
+また、C言語向けのヘルパー関数のコードを生成します。
+
+ラッパー関連のソースコードは、`wrapper/`にまとめられています。
+
+ラッパーのビルドと実行を試すには、`example/wrapper/`で`make`を実行して下さい。
+
+
+### Google Test
+
+Google Testでテストを実行するには、まずラッパーでテストをラップする必要があります。
+そして、ラップしたテストのコンパイルでは、`cutb/bridge/gtest.h`をインクルードしたCUTB設定用ヘッダ（cutb_config.h）を使用します。
+
+利用例は、`example/runner/gtest`をご覧下さい。
+
+Google Testについての詳細は[GitHubのレポジトリ](https://github.com/google/googletest)を参照して下さい。
+
+なお、このフレームワークには、TESTやFAIL、SUCCEED、ASSERT_EQといった名前のマクロがありますので、マクロ名の衝突にはご注意下さい。
+衝突した場合には[こちらの方法](http://opencv.jp/googletestdocs/FAQ.html#faq-google-test-defines-a-macro-that-clashes-with-one-defined-by-another-library)でリネームして下さい。`cutb/bridge/gtest.h`で利用しているマクロをリネームした場合は、このヘッダの対応する箇所も変更して下さい。
+
+### Cpputest
+
+Cpputestでテストを実行するには、まずラッパーでテストをラップする必要があります。
+そして、ラップしたテストのコンパイルでは、`cutb/bridge/cpputest.h`をインクルードしたCUTB設定用ヘッダ（cutb_config.h）を使用します。
+
+利用例は、`example/runner/cpputest`をご覧下さい。
+
+Cpputestのインストール方法などについては[こちら](http://cpputest.github.io/)をご覧下さい。
+
+インストールするCpputestのバージョンは、3.6以降である必要があります。
+
+Ubuntu 16.04では以下のコマンドで3.6以降のCpputestをインストールできます。
+しかし、1つ前のLTSであるUbuntu 14.04では3.6より古いバージョンがインストールされますのでご注意下さい。
+```
+sudo apt install cpputest
+```
+
+なお、このフレームワークには、TESTやTEST_GROUP、CHECKといった名前のマクロがありますので、マクロ名の衝突にはご注意下さい。
+
+#### 制限事項
+Cpputestを利用する場合、別のテストファイルであったとしても、同じ名前を複数のテストグループに使うとエラーになります。
+
+
 ### CUTBが提供する簡易テストフレームワーク
 
 簡易テストフレームワークを利用する場合は、フレームワークのタイプとアサートのタイプの2つをCUTB設定用ヘッダ（cutb_config.h）で指定します。フレームワークとアサートの組み合わせに制限はありません。
@@ -221,6 +282,19 @@ Microsoft Unit Testing Frameworkを利用するときは、`cutb/bridge/msvc.h`�
 mincppを利用するには、CUTB設定用ヘッダ（cutb_config.h）で`cutb/framework/mincpp.h`をインクルードします。
 
 利用例は、`example/runner/mincpp`をご覧下さい。
+
+##### Language C type (langc type)
+
+クロス開発において、ターゲットマシン向けのコンパイラが C++ に対応していない場合でも、ラッパーとこのフレームワークタイプを利用することで、そのターゲットマシン向けにC言語のみでコンパイルしてテストを実行できます。
+ただし、ラップ処理は C++ を使うため、開発マシン上で行います。ラップした後のテストはC言語のみでコンパイルできます。
+
+なお、C言語でコンパイルする場合には、ユニットテストとそのテスト対象のプログラムの両方がC言語のみで書かれていることが必要となります。
+
+langc typeを利用してラップしたテストをコンパイルするときは、CUTB設定用ヘッダ（cutb_config.h）で`cutb/framework/langc.h`をインクルードします。
+
+利用できるAPIは、[Doxygenドキュメント](https://wakairo.github.io/cutb-doxydocs/chelper_8h.html)をご覧下さい。
+
+利用例は、`example/runner/langc`をご覧下さい。
 
 
 #### アサートの種類

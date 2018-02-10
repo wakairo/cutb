@@ -31,6 +31,7 @@
 *.out
 *.app
 testrunner
+cutb-wrap
 
 # gcc coverage testing tool files
 *.gcno

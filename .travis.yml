@@ -14,6 +14,10 @@ script:
   - make -C test/assert_exit test
   - make -C test/framework test
   - make -C test/frameworkinit test
+  - make -C test/parser test
+  - make -C test/utils test
+  - make -C test/wrapper test
   - make -C example/runner/boosttest test
+  - make -C example/runner/langc test
   - make -C example/runner/mincpp test
   - make -C example/runner/simple test

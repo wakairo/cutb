@@ -38,6 +38,11 @@ CUTB does not depend on a specific testing framework. Therefore, CUTB makes it p
 - Boost Test Library
 - Microsoft Unit Testing Framework
 
+### Unit testing frameworks available by using the wrapper
+
+- Google Test
+- Cpputest
+
 ### CUTB simplified unit testing framework
 
 CUTB offers a simplified unit testing framework.
@@ -179,6 +184,63 @@ In the document window, you cannot run or debug just one test by using shortcut 
 To run or debug just one test, right click a test in the Test Explorer window.
 
 
+### Using the parser
+
+By using the CUTB parser, you can make a program that processes information about test groups in test files and tests in the test groups.
+
+When you use the parser, use a CUTB configuration header (cutb_config.h) that includes `cutb/parser/cutb_parse_config.h`.
+You also need to compile and link `src/cutb_parser_core.cpp`.
+
+See [the Doxygen documentation](https://wakairo.github.io/cutb-doxydocs/classcutb_1_1_parser.html) for the available API.
+
+See the following wrapper for an example of the parser usage, because the wrapper uses the parser.
+
+### Using the wrapper
+
+By using the CUTB parser, the CUTB wrapper wraps tests.
+The wrapped tests can be executed by Google Test and Cpputest.
+The wrapper also generates code for helper functions for language C use.
+
+The source code about wrapper is gathered in `wrapper/`.
+
+To build and execute the wrapper, execute `make` in `example/wrapper/`.
+
+
+### Google Test
+
+In order to use Google Test, you need to wrap your tests first.
+When you compile the wrapped tests for Google Test, use a CUTB configuration header (cutb_config.h) that includes `cutb/bridge/gtest.h`.
+
+See `example/runner/gtest` for an example of Google Test usage.
+
+See [the github repository](https://github.com/google/googletest) for more information about Google Test.
+
+Note that there might be name conflicts with your program because this framework uses macros that have names such as TEST, FAIL, SUCCEED, and ASSERT_EQ.
+When the conflict occurs, rename the macros by following the instructions of [this page](https://github.com/google/googletest/blob/master/googletest/docs/FAQ.md#google-test-defines-a-macro-that-clashes-with-one-defined-by-another-library-how-do-i-deal-with-that).
+If you change a name of a macro used in `cutb/bridge/gtest.h`, change the name in the header file.
+
+### Cpputest
+
+In order to use Cpputest, you need to wrap your tests first.
+When you compile the wrapped tests for Cpputest, use a CUTB configuration header (cutb_config.h) that includes `cutb/bridge/cpputest.h`.
+
+See `example/runner/cpputest` for an example of Cpputest usage.
+
+See [this page](http://cpputest.github.io/) for more information, such as installation instructions, about Cpputest.
+
+The version of Cpputest used with CUTB must be 3.6 or later.
+
+In Ubuntu 16.04, you can install Cpputest later than 3.6 by the following command, but in Ubuntu 14.04, which is the previous LTS, the version to be installed is older than 3.6.
+```
+sudo apt install cpputest
+```
+
+Note that there might be name conflicts with your program because this framework uses macros that have names such as TEST, TEST_GROUP, and CHECK
+
+#### Restriction
+When you use Cpputest, the same name for multiple test groups, even in different test files, causes an error.
+
+
 ### CUTB simplified unit testing framework
 
 When you use the simplified unit testing framework, select a type of framework and a type of assertion in the CUTB configuration header (cutb_config.h).
@@ -225,6 +287,20 @@ An assumed use case of mincpp is only when you really need to reduce the amount 
 When you use mincpp type framework, make the CUTB configuration header (cutb_config.h) include `cutb/framework/mincpp.h`.
 
 See `example/runner/mincpp` for an example of usage of this type of framework.
+
+##### Language C type (langc type)
+
+Even when a compiler for a target machine does not support C++ in cross development, you can compile your tests only in C and run the tests on the target machine by using the wrapper and this type of framework.
+In this case, the wrapper runs on a host development machine because it uses C++.
+After the wrapping, the wrapped tests can be compiled only in C.
+
+Note that you must write both your unit tests and your program to be tested only in C to compile them only in C.
+
+When you compile the wrapped tests for langc type framework, make the CUTB configuration header (cutb_config.h) include `cutb/framework/langc.h`.
+
+See [the Doxygen documentation](https://wakairo.github.io/cutb-doxydocs/chelper_8h.html) for the available API.
+
+See `example/runner/langc` for an example of usage of this type of framework.
 
 
 #### Types of assertions

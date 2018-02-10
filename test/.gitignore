@@ -1,2 +1,8 @@
 # Unit test output files
 *.errmsg.actual
+*.test_suffix
+test_prefix.*
+wrapper/c_helper.h
+
+# Executables
+*.bin
