@@ -8,10 +8,11 @@ C/C++ Unit Testing Bridge (CUTB)
 The purpose of CUTB is making it possible to run unit tests written in C or C++ in various environments (e.g. operating systems and testing frameworks).
 By using CUTB, testing frameworks of Boost, Visual Studio, and so on can be used to execute the unit tests.
 Thus, CUTB makes it easy to test software in multiple environments and make it possible to choose the best tool without restriction of a specific environment.
+
 The followings are example use cases of CUTB.
 
 - In cross development for embedded software, running the same unit tests on both a target machine and a host development machine.
-- In order to develop software that support Linux and Windows, running the same unit tests in different suitable ways according to each development environment.
+- In order to develop software that supports Linux and Windows, running the same unit tests in different suitable ways according to each development environment.
 - Using Gcov, which is a tool of GCC, to measure coverage and using Microsoft Visual Studio for debugging.
 
 CUTB test format is simple and makes all the above possible.
@@ -22,7 +23,7 @@ CUTB test format is simple and makes all the above possible.
 
 - A case where portability of unit tests is required or is thought to be important.
 - A case where there is a reason that requires running unit tests in multiple environments, such as to develop software that supports different operating systems, but it is difficult or impossible to make a testing framework work in all the multiple environments.
-- A case where because of the domain, internal structure, or something of the developing software, a unique testing system (such as classes, functions, or macros for the testing) have been constructed, so rich features of a testing framework is not important, and it is important to use different frameworks for different environments so that unit tests run stably without any troubles in each environment.
+- A case where because of the domain, internal structure, or something of the developing software, a unique testing system (such as classes, functions, or macros for the testing) have been constructed, so rich features of a testing framework are not important, and it is important to use different frameworks for different environments so that unit tests run stably without any troubles in each environment.
 - A case where developing software needs to run in restricted environment, and unit tests for the software also needs to run in the same environment.
 - A case of embedded software development where classes or functions are implemented and checked with unit tests on a personal computer with a productive environment and testing framework, and then they are checked with the same unit tests on a real device.
 
@@ -108,9 +109,9 @@ For example, if all test files include test_helper.h, which has helper functions
 The example of Microsoft Unit Testing Framework requires Visual Studio 2012 or later. The community edition is enough to run the example.
 
 The other examples require an POSIX environment (Unix-like environment).
-
 If your OS is Windows, you can use Cygwin, Windows Subsystem for Linux, or a Linux virtual machine using virtualization software, such as VirtualBox.
-The POSIX environment needs to have g++, gcov, make (GNU Make), doxygen.
+
+The POSIX environment needs to have g++, gcov, make (GNU Make), and doxygen.
 An installation package for g++ may include gcov.
 
 In Ubuntu, you can install them via:
@@ -120,7 +121,6 @@ sudo apt install g++ make doxygen
 
 An example that uses an external testing framework, such as Boost Test Library, needs the testing framework to be installed in the POSIX environment.
 For example, in Ubuntu, you can install Boost Test Library via `sudo apt install libboost-test-dev`.
-
 
 ### Executing the example of Microsoft Unit Testing Framework
 1. In Visual Studio, open `cutbExample.sln` in `example/runner/msvc`.
@@ -145,6 +145,7 @@ If you try to add a test, add it to one of the existing test files or create a n
 If you have added a new test file, add the file to the example solution in Visual Studio to run the test on Microsoft Unit Testing Framework.
 
 About examples for POSIX, the wildcard function of GNU Make catches files whose name end with `_test.cpp` in `example/test/` and processes them automatically.
+
 
 
 ## Usage according to applications
@@ -186,8 +187,7 @@ You can use all combinations of type of framework and type of assertion.
 In any combination, when an assertion fails, the test execution is terminated at the assertion. The next test is not automatically executed. Also, there is no feature that resumes execution of tests after a runtime error, such as zero division error.
 
 The purpose of this simplified unit testing framework is allowing unit tests to run in restricted environment, such as a target machine (a real device) in cross development for embedded software.
-
-Therefore, this framework does not rely on any operating system and use few features of the standard C or C++ library. Also, the code size is small. However, the other side of these advantages is that this framework has very few features, which are realized in the restriction. Hence, use this simplified unit testing framework only when there is a problem that is difficult for the other testing frameworks to solve.
+Therefore, this framework does not rely on any operating system and uses few features of the standard C or C++ library. Also, the code size is small. However, the other side of these advantages is that this framework has very few features, which are realized in the restriction. Hence, use this simplified unit testing framework only when there is a problem that is difficult for the other testing frameworks to solve.
 
 As a side note, in a restricted environment, imposed requirements sometimes include use of an old compiler, so the simplified unit testing framework has been implemented in a way that allows compilation under C++03.
 
@@ -213,14 +213,13 @@ Because there is API to get test names, etc., you can write a program that start
 ##### Minimum type in C++ (mincpp type)
 
 The mincpp type framework calls tests using static object constructors.
-Thus, the order of calling test is the same as the order of calling static object constructors.
+Thus, the order of calling tests is the same as the order of calling static object constructors.
 Therefore, it is impossible to dynamically change the order or to start from an arbitrary test. Moreover, there is neither a API class nor a API function.
 
 Note that the standard library or a user library might have static objects that must be initialized before calling tests. Be careful of the static initialization order fiasco.
 For example, if you use a standard I/O stream object, such as `cout`, in your unit test, you need to initialize the stream object before calling the test by using `std::ios_base::Init`, etc. correctly.
 
 In conclusion, you should **use the simple type instead of the mincpp type as much as possible**.
-
 An assumed use case of mincpp is only when you really need to reduce the amount of code for calling unit tests.
 
 When you use mincpp type framework, make the CUTB configuration header (cutb_config.h) include `cutb/framework/mincpp.h`.
@@ -234,7 +233,7 @@ See `example/runner/mincpp` for an example of usage of this type of framework.
 
 When an assertion fails, fprintf() outputs an error message to the standard error output, and exit() terminates the program.
 
-When you use assertions using exit(), use a CUTB configuration header (cutb_config.h) that includes `cutb/assert/exit.h`
+When you use assertions using exit(), use a CUTB configuration header (cutb_config.h) that includes `cutb/assert/exit.h`.
 You also need to compile and link `src/cutb_assert_exit.cpp`.
 
 See `example/runner/simple` for an example of usage of this type of assertions.
